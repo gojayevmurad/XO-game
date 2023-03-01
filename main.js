@@ -19,8 +19,8 @@ restartBtn.addEventListener("click", () => {
   });
   modal.classList.add("hide");
   overlay.classList.add("hide");
-  oRide.classList.remove("ride");
-  xRide.classList.remove("ride");
+  oRide.classList = "o--player ride";
+  xRide.classList = "x--player";
 });
 
 squares.forEach((square) => {
