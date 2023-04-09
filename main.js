@@ -1,4 +1,3 @@
-let game = document.querySelector(".game");
 let squares = document.querySelectorAll(".square");
 let xRide = document.querySelector(".x--player");
 let oRide = document.querySelector(".o--player");
@@ -6,11 +5,12 @@ let winnerPlayer = document.querySelector(".modal p span");
 let restartBtn = document.querySelector(".modal button");
 let modal = document.querySelector(".modal");
 let overlay = document.querySelector(".overlay");
+let resetBtn = document.querySelector(".resetBtn");
 
 let count = 0;
 let winner = false;
 
-restartBtn.addEventListener("click", () => {
+const reset = () => {
   winner = false;
   count = 0;
   squares.forEach((square) => {
@@ -21,7 +21,10 @@ restartBtn.addEventListener("click", () => {
   overlay.classList.add("hide");
   oRide.classList = "o--player ride";
   xRide.classList = "x--player";
-});
+};
+
+restartBtn.addEventListener("click", reset);
+resetBtn.addEventListener("click", reset);
 
 squares.forEach((square) => {
   square.addEventListener("click", (e) => {
@@ -36,11 +39,11 @@ squares.forEach((square) => {
     } else {
       e.target.innerHTML = "x";
       e.target.classList.add("red");
-
       oRide.classList.add("ride");
       xRide.classList.remove("ride");
       count++;
     }
+
     checkWinner(0, 1, 2);
     checkWinner(3, 4, 5);
     checkWinner(6, 7, 8);
@@ -82,3 +85,8 @@ function checkWinner(num1, num2, num3) {
     overlay.classList.remove("hide");
   }
 }
+
+overlay.addEventListener("click", () => {
+  modal.classList.add("hide");
+  overlay.classList.add("hide");
+});
